@@ -9,7 +9,7 @@ public class Board {
     public Board(){}
 
     public void addShape(Shape shape, int position){
-        if(shapeArray[position] == null) {
+        if((shapeArray[position] == null)&&(position < 4)) {
             shapeArray[position] = shape;
         }else{
             System.out.println("This position is occupied by other shape");
