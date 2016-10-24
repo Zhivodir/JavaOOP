@@ -7,6 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Group group = new Group("DA-99");
         group.choiseOperation();
-        //System.out.println(group);
+
     }
 }

@@ -3,18 +3,23 @@ package les4.task4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by User on 18.10.2016.
  */
-public class Group {
+public class Group implements Voenkom {
     private Student[] group = new Student[10];
     private String name;
 
     public Group(String name) {
-        group[0] = new Student("Tsurko", "Ivan", 23, "DA-9901");
-        group[1] = new Student("Ivanov", "Petro", 23, "DA-9901");
-        group[2] = new Student("Avanov", "Petro", 23, "DA-9901");
+        group[0] = new Student("Tsurko", "Ivan", 21, "DA-9901");
+        group[1] = new Student("Ivanov", "Petro", 19, "DA-9901");
+        group[2] = new Student("Avanov", "Petro", 20, "DA-9901");
+        group[3] = new Student("Fosman", "Isaak", 30, "DA-9901");
+        group[4] = new Student("Abdula", "Dark", 17, "DA-9901");
         this.name = name;
     }
 
@@ -46,8 +51,11 @@ public class Group {
                         findStudent();
                         break;
                     case 4:
-                        sortArray();
+                        sortByParametr();
                         System.out.println(this);
+                        break;
+                    case 5:
+                        findRookie();
                         break;
                     case 0:
                         flagOfExit = false;
@@ -123,27 +131,46 @@ public class Group {
         }catch (IOException e){e.printStackTrace();}
     }
 
-    public void sortArray(){
-        int numNull = 0;
-        for (int i = 0; i < group.length - 1; i++) {
-            boolean swapped = false;
-            for (int j = 0; j < group.length - i - 1 - numNull; j++) {
-                if((group[j] == null || group[j].getSurname() == null)||
-                        (group[j+1] == null)||(group[j+1].getSurname() == null)){
-                    Student tmp = group[j];
-                    group[j] = group[j + 1];
-                    group[j + 1] = tmp;
-                    numNull++;
-                }
-                else if ((group[j].getSurname().compareTo(group[j + 1].getSurname()) > 0)){
-                    Student tmp = group[j];
-                    group[j] = group[j + 1];
-                    group[j + 1] = tmp;
-                    swapped = true;
-                }
+    public void sortByParametr(){
+        System.out.println("Choise type of sort(1.byAge 2.bySurname):");
+        BufferedReader reader2 = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            int typeOfSort = Integer.parseInt(reader2.readLine());
+            switch (typeOfSort){
+                case 1:
+                    Arrays.sort(group, compareByAge);
+                    break;
+                case 2:
+                    Arrays.sort(group, compareBySurname);
+                    break;
             }
-            if(!swapped)
-                break;
+        }catch (IOException e){e.printStackTrace();}
+    }
+
+    Comparator<Student> compareBySurname = new Comparator<Student>() {
+        public int compare(Student o1, Student o2) {
+            if(o1 == null && o2 == null)  return 0;
+            else if(o1 != null && o2 == null)  return 1;
+            else if(o1 == null && o2 != null)  return -1;
+            else return o1.getSurname().compareTo(o2.getSurname());
+        }
+    };
+
+    Comparator<Student> compareByAge = new Comparator<Student>() {
+        public int compare(Student o1, Student o2) {
+            if(o1 == null && o2 == null)  return 0;
+            else if(o1 != null && o2 == null)  return 1;
+            else if(o1 == null && o2 != null)  return -1;
+            else return o1.getAge() - o2.getAge();
+        }
+    };
+
+    @Override
+    public void findRookie() {
+        for(Student student:group){
+            if(student != null && student.getAge() > 18){
+                System.out.println(student);
+            }
         }
     }
 
@@ -161,4 +188,28 @@ public class Group {
         sb.append(System.lineSeparator());
         return sb.toString();
     }
+
+//    public void sortArray(){
+//        int numNull = 0;
+//        for (int i = 0; i < group.length - 1; i++) {
+//            boolean swapped = false;
+//            for (int j = 0; j < group.length - i - 1 - numNull; j++) {
+//                if((group[j] == null || group[j].getSurname() == null)||
+//                        (group[j+1] == null)||(group[j+1].getSurname() == null)){
+//                    Student tmp = group[j];
+//                    group[j] = group[j + 1];
+//                    group[j + 1] = tmp;
+//                    numNull++;
+//                }
+//                else if ((group[j].getSurname().compareTo(group[j + 1].getSurname()) > 0)){
+//                    Student tmp = group[j];
+//                    group[j] = group[j + 1];
+//                    group[j + 1] = tmp;
+//                    swapped = true;
+//                }
+//            }
+//            if(!swapped)
+//                break;
+//        }
+//    }
 }
