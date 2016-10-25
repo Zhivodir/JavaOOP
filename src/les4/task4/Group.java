@@ -55,7 +55,13 @@ public class Group implements Voenkom {
                         System.out.println(this);
                         break;
                     case 5:
-                        findRookie();
+                        Student [] temp = findRookie();
+                        System.out.println("List of rookies from Group " + name + ":");
+                        for (int i = 0; i < temp.length; i++) {
+                            if(temp[i] != null) {
+                                System.out.println("  " + temp[i].toString());
+                            }
+                        }
                         break;
                     case 0:
                         flagOfExit = false;
@@ -166,12 +172,16 @@ public class Group implements Voenkom {
     };
 
     @Override
-    public void findRookie() {
+    public Student [] findRookie() {
+        Student [] temp = new Student[group.length];
+        int count = 0;
         for(Student student:group){
             if(student != null && student.getAge() > 18){
-                System.out.println(student);
+                temp[count] = student;
+                count++;
             }
         }
+        return temp;
     }
 
     @Override
