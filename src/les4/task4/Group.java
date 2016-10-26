@@ -27,7 +27,6 @@ public class Group implements Voenkom {
         boolean flagOfExit = true;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while(flagOfExit){
-        //for(int i = 0; i < 3; i++){
             System.out.println("List op operations: ");
             System.out.println("1. Add student.");
             System.out.println("2. Delete student.");
@@ -204,14 +203,16 @@ public class Group implements Voenkom {
 
     public void serializationOfGroup(){
         String content = this.toString();
-        System.out.println(content);
-        try(BufferedWriter f = new BufferedWriter(new FileWriter("group.txt"))){
+        try(BufferedWriter f = new BufferedWriter(new FileWriter(this.name + ".txt"))){
             f.write(content);
             System.out.println();
         } catch(IOException e){
             System.out.println();
         }
+    }
 
+    public Group deserializationOfGroup(String path){
+       return null;
     }
 
 
