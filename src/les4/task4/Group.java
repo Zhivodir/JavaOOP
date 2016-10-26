@@ -1,8 +1,6 @@
 package les4.task4;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,6 +34,7 @@ public class Group implements Voenkom {
             System.out.println("3. Find student.");
             System.out.println("4. Sort list of group.");
             System.out.println("5. Voenkom.");
+            System.out.println("6. Save group into the file.");
             System.out.println("0. Exit.");
             System.out.println("Select the operation: ");
             try {
@@ -62,6 +61,9 @@ public class Group implements Voenkom {
                                 System.out.println("  " + temp[i].toString());
                             }
                         }
+                        break;
+                    case 6:
+                        serializationOfGroup();
                         break;
                     case 0:
                         flagOfExit = false;
@@ -198,6 +200,20 @@ public class Group implements Voenkom {
         sb.append(System.lineSeparator());
         return sb.toString();
     }
+
+
+    public void serializationOfGroup(){
+        String content = this.toString();
+        System.out.println(content);
+        try(BufferedWriter f = new BufferedWriter(new FileWriter("group.txt"))){
+            f.write(content);
+            System.out.println();
+        } catch(IOException e){
+            System.out.println();
+        }
+
+    }
+
 
 //    public void sortArray(){
 //        int numNull = 0;
