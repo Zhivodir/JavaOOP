@@ -8,12 +8,36 @@ import java.io.*;
  * Created by User on 26.10.2016.
  */
 public class SamplingSameWords {
-    public static void main(String[] args) {
-        SamplingSameWords ssw = new SamplingSameWords();
-        String resultFile = "C:\\DevKit\\Temp\\Target\\task2Result.txt";
+    private String pathSource1;
+    private String pathSource2;
+    private String resultFile;
 
-        String [] mas1 = ssw.readFile("C:\\DevKit\\Temp\\Source\\3.txt");
-        String [] mas2 = ssw.readFile("C:\\DevKit\\Temp\\Source\\5.txt");
+    public SamplingSameWords(String pathSource1, String pathSource2, String resultFile) {
+        this.pathSource1 = pathSource1;
+        this.pathSource2 = pathSource2;
+        this.resultFile = resultFile;
+    }
+
+    public String [] readFile(String path){
+        StringBuilder sb = new StringBuilder();
+        try(BufferedReader reader = new BufferedReader(new FileReader(path))){
+            while (true) {
+                String buffer = reader.readLine();
+                if (buffer == null) {
+                    break;
+                }
+                sb.append(buffer + "\n");
+            }
+        }
+        catch(FileNotFoundException e){e.printStackTrace();}
+        catch(IOException e){e.printStackTrace();}
+        String contentOfFile = sb.toString().replaceAll("\\W"," ");
+        return contentOfFile.split("\\s+");
+    }
+
+    public void writeFile(){
+        String [] mas1 = this.readFile("C:\\DevKit\\Temp\\Source\\3.txt");
+        String [] mas2 = this.readFile("C:\\DevKit\\Temp\\Source\\5.txt");
         String [] result = new String[mas1.length < mas2.length ? mas1.length : mas2.length];
 
         int count = 0;
@@ -24,7 +48,7 @@ public class SamplingSameWords {
                     for (int i=0; i < count+1; i++) {
                         if(word1.equals(result[i])){
                             flag = true;
-                           break;
+                            break;
                         }
                     }
                     if(flag != true){
@@ -44,22 +68,5 @@ public class SamplingSameWords {
         } catch(IOException e){
             System.out.println();
         }
-    }
-
-    public String [] readFile(String path){
-        StringBuilder sb = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new FileReader(path))){
-            while (true) {
-                String buffer = reader.readLine();
-                if (buffer == null) {
-                    break;
-                }
-                sb.append(buffer + "\n");
-            }
-        }
-        catch(FileNotFoundException e){e.printStackTrace();}
-        catch(IOException e){e.printStackTrace();}
-        String contentOfFile = sb.toString().replaceAll("\\W"," ");
-        return contentOfFile.split("\\s+");
     }
 }

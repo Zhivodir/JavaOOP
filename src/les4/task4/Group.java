@@ -134,7 +134,6 @@ public class Group implements Voenkom {
             if(surname == null){throw new IllegalArgumentException();}
             for (Student st:group) {
                 if(st == null){continue;}
-                //System.out.println(st.getSurname() + " : " + surname);
                 if(st.getSurname().equals(surname)){
                     System.out.println(st);
                 }
