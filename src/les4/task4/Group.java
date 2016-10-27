@@ -221,10 +221,6 @@ public class Group implements Voenkom {
             String str="";
             int count = 0;
             for(;(str=f.readLine())!=null;) {
-                if(count == 0){
-                    //System.out.println(str.matches("[a-q]"));
-                    count++;
-                }
                 sb.append(str);
                 sb.append(System.lineSeparator());
             }
