@@ -48,6 +48,7 @@ public class Group {
         for (Student st:group) {
             if(st.getSurname() == surname){
                 result = st;
+                //System.out.println(st);
             }
         }
         return result;
@@ -60,7 +61,7 @@ public class Group {
             boolean swapped = false;
             for (int j = 0; j < group.length - i - 1 - numNull; j++) {
                 if((group[j] == null || group[j].getSurname() == null)||
-                   (group[j+1] == null)||(group[j+1].getSurname() == null)){
+                        (group[j+1] == null)||(group[j+1].getSurname() == null)){
                     Student tmp = group[j];
                     group[j] = group[j + 1];
                     group[j + 1] = tmp;
