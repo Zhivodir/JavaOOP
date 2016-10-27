@@ -34,6 +34,7 @@ public class Group implements Voenkom {
             System.out.println("4. Sort list of group.");
             System.out.println("5. Voenkom.");
             System.out.println("6. Save group into the file.");
+            System.out.println("7. Load group from the file.");
             System.out.println("0. Exit.");
             System.out.println("Select the operation: ");
             try {
@@ -62,8 +63,11 @@ public class Group implements Voenkom {
                         }
                         break;
                     case 6:
-                        serializationOfGroup();
+                        saveGroup();
                         break;
+                    case 7:
+                        Group loadGroup = loadGroup();
+                        System.out.println(loadGroup);
                     case 0:
                         flagOfExit = false;
                         break;
@@ -201,7 +205,7 @@ public class Group implements Voenkom {
     }
 
 
-    public void serializationOfGroup(){
+    public void saveGroup(){
         String content = this.toString();
         try(BufferedWriter f = new BufferedWriter(new FileWriter(this.name + ".txt"))){
             f.write(content);
@@ -211,32 +215,31 @@ public class Group implements Voenkom {
         }
     }
 
-    public Group deserializationOfGroup(String path){
-       return null;
+    public Group loadGroup(){
+        StringBuilder sb = new StringBuilder();
+        try(BufferedReader f = new BufferedReader(new FileReader("C:\\DevKit\\Project\\JavaOOP\\DA-99.txt"))){
+            String str="";
+            int count = 0;
+            for(;(str=f.readLine())!=null;) {
+                if(count == 0){
+                    //System.out.println(str.matches("[a-q]"));
+                    count++;
+                }
+                sb.append(str);
+                sb.append(System.lineSeparator());
+            }
+        }catch(FileNotFoundException e){e.printStackTrace();}
+        catch (IOException e){e.printStackTrace();}
+        String content = sb.toString();
+        String [] words = content.split(System.lineSeparator());
+        Group result = new Group();
+        result.name = words[1].substring(6,11);
+        for(int i = 2,j = 0; i < words.length - 1; i++){
+            String [] dataStudent = words[i].replaceAll(" ","").split(",");
+            result.group[j] = new Student(dataStudent[0], dataStudent[1],
+                    Integer.parseInt(dataStudent[2].substring(0,2)), dataStudent[3]);
+            j++;
+        }
+       return result;
     }
-
-
-//    public void sortArray(){
-//        int numNull = 0;
-//        for (int i = 0; i < group.length - 1; i++) {
-//            boolean swapped = false;
-//            for (int j = 0; j < group.length - i - 1 - numNull; j++) {
-//                if((group[j] == null || group[j].getSurname() == null)||
-//                        (group[j+1] == null)||(group[j+1].getSurname() == null)){
-//                    Student tmp = group[j];
-//                    group[j] = group[j + 1];
-//                    group[j + 1] = tmp;
-//                    numNull++;
-//                }
-//                else if ((group[j].getSurname().compareTo(group[j + 1].getSurname()) > 0)){
-//                    Student tmp = group[j];
-//                    group[j] = group[j + 1];
-//                    group[j + 1] = tmp;
-//                    swapped = true;
-//                }
-//            }
-//            if(!swapped)
-//                break;
-//        }
-//    }
 }

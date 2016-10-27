@@ -42,7 +42,7 @@ public class People {
 
     @Override
     public String toString() {
-        return  surname + " " +
+        return  surname + " ," +
                 name + " ," +
                 age + " years";
     }
