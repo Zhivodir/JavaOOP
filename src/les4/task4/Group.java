@@ -218,7 +218,6 @@ public class Group implements Voenkom {
         StringBuilder sb = new StringBuilder();
         try(BufferedReader f = new BufferedReader(new FileReader("C:\\DevKit\\Project\\JavaOOP\\DA-99.txt"))){
             String str="";
-            int count = 0;
             for(;(str=f.readLine())!=null;) {
                 sb.append(str);
                 sb.append(System.lineSeparator());
