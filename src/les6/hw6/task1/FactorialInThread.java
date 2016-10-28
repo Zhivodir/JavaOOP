@@ -15,16 +15,17 @@ public class FactorialInThread implements Runnable{
 
     @Override
     public void run() {
-        for (int i = 1; i < this.n; i++) {
+        for (int i = 0; i < this.n; i++) {
             System.out.println(Thread.currentThread().getName() + " -> " + "!" + factorial(i));
         }
     }
 
     private BigInteger factorial(int n){
         BigInteger fact = new BigInteger("1");
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             fact = fact.multiply(new BigInteger("" + i));
         }
+
         return fact;
     }
 }

@@ -7,7 +7,7 @@ public class FactoryOfThreads {
     Thread [] threads = new Thread[100];
 
     public FactoryOfThreads() {
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < threads.length; i++){
             threads[i] = new Thread(new FactorialInThread(i));
         }
     }
