@@ -7,19 +7,19 @@ import java.util.Random;
  */
 public class Main {
     public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
-        int [] mas = new int[1000];
+        int [] mas = new int[100000000];
         Random rn = new Random();
         for(int i = 0; i < mas.length; i++){
             mas[i] = rn.nextInt(100);
         }
-        Thread thread = new Thread((new Service()));
+
+        Thread thread = new Thread((new Service(mas)));
         thread.start();
         try {
             thread.join();
         }catch(InterruptedException e){e.printStackTrace();}
-        System.out.println("Main process STOP!");
-        long timeSpent = System.currentTimeMillis() - startTime;
-        System.out.println(timeSpent);
+
+        SimpleAlgorithm sa = new SimpleAlgorithm(mas);
+        sa.sum();
     }
 }

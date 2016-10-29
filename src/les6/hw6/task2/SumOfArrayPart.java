@@ -24,8 +24,6 @@ public class SumOfArrayPart implements Runnable{
         for(int i = startElement; i < endElement; i++){
             sum += service.getMas()[i];
         }
-        System.out.println("Process-" + numOfProc + " sum:" + sum);
         service.setSumsOfArrayParts(sum, numOfProc);
-        //System.out.println("Process-" + numOfProc + " STOP!");
     }
 }
