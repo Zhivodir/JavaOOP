@@ -10,9 +10,9 @@ public class Service implements Runnable{
     private int [] sumsOfArrayParts;          //massiv of sums of Array parts
     private int result;
 
-    public Service(int [] mas) {
+    public Service(ArraysClass ac) {
         super();
-        this.mas = mas;
+        this.mas = ac.getMas();
         this.procQuantity = Runtime.getRuntime().availableProcessors();
         this.summators = new Thread[procQuantity];
         this.sumsOfArrayParts = new int[procQuantity];

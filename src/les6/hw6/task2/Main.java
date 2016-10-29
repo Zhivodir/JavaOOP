@@ -7,19 +7,15 @@ import java.util.Random;
  */
 public class Main {
     public static void main(String[] args) {
-        int [] mas = new int[100000000];
-        Random rn = new Random();
-        for(int i = 0; i < mas.length; i++){
-            mas[i] = rn.nextInt(100);
-        }
+        ArraysClass ac = new ArraysClass();
 
-        Thread thread = new Thread((new Service(mas)));
+        Thread thread = new Thread((new Service(ac)));
         thread.start();
         try {
             thread.join();
         }catch(InterruptedException e){e.printStackTrace();}
 
-        SimpleAlgorithm sa = new SimpleAlgorithm(mas);
+        SimpleAlgorithm sa = new SimpleAlgorithm(ac);
         sa.sum();
     }
 }

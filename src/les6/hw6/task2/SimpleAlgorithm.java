@@ -7,8 +7,8 @@ public class SimpleAlgorithm {
     private static int [] mas;
     private int result = 0;
 
-    public SimpleAlgorithm(int [] mas) {
-        this.mas = mas;
+    public SimpleAlgorithm(ArraysClass ac) {
+        this.mas = ac.getMas();
     }
 
     public void sum(){
