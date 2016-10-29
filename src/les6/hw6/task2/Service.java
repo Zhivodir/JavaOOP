@@ -37,8 +37,6 @@ public class Service implements Runnable{
         for(int sum:sumsOfArrayParts){
             result += sum;
         }
-        long timeSpent = System.currentTimeMillis() - startTime;
-        System.out.println("Threads method: " + timeSpent  + " millisecund");
         System.out.println("Sum of matrix elements equals: " + result);
     }
 
