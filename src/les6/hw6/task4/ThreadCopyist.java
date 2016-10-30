@@ -1,9 +1,6 @@
 package les6.hw6.task4;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by User on 29.10.2016.
@@ -11,10 +8,9 @@ import java.io.IOException;
 public class ThreadCopyist implements Runnable {
     private int startElement;
     private int endElement;
-    private int numOfProc;
     private Service service;
 
-    public ThreadCopyist(Service service, int startElement, int endElement, int numOfProc) {
+    public ThreadCopyist(Service service, int startElement, int endElement) {
         this.startElement = startElement;
         this.endElement = endElement;
         this.service = service;
@@ -24,15 +20,19 @@ public class ThreadCopyist implements Runnable {
     public void run() {
         int offset = service.getPathToStartDirectory().length();
         for(int i = startElement; i < endElement; i++){
+            String relativePath = service.getList()[i].getAbsolutePath().substring(offset);
+            String insuranceAgainstMistakes = relativePath.substring(0, relativePath.lastIndexOf("\\"));
             try {
-                System.out.println(service.getDirectoryToWrite()  + "/" + service.getList()[i].getAbsolutePath().substring(offset));
+
                 if(!service.getList()[i].getName().contains(".")){
-                    new File(service.getDirectoryToWrite()  + "/" + service.getList()[i].getAbsolutePath().substring(offset)).mkdir();
+                    new File(service.getDirectoryToWrite()  + "/" + relativePath).mkdir();
                 }else{
+                    new File(service.getDirectoryToWrite()  + insuranceAgainstMistakes).mkdir();
                     copyFile(service.getList()[i],
-                            new File(service.getDirectoryToWrite()  + "/" + service.getList()[i].getAbsolutePath().substring(offset)));
+                            new File(service.getDirectoryToWrite()  + "/" + relativePath));
                 }
-            }catch (IOException e){e.printStackTrace();}
+            }
+            catch (IOException e){e.printStackTrace();}
         }
     }
 

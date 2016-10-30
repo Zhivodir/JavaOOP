@@ -19,12 +19,11 @@ public class Service implements Runnable {
         this.copyists = new Thread[procQuantity];
         this.directoryToWrite = cod.getDirectoryToWrite();
         this.pathToStartDirectory = cod.getPathToStartDirectory();
-        System.out.println(pathToStartDirectory);
 
         for(int numOfProc = 0; numOfProc < procQuantity; numOfProc++){
             int startElement = numOfProc*(getList().length/procQuantity);
             int endElement = (numOfProc+1)*(getList().length/procQuantity);
-            copyists[numOfProc] = new Thread(new ThreadCopyist(this, startElement, endElement, numOfProc));
+            copyists[numOfProc] = new Thread(new ThreadCopyist(this, startElement, endElement));
         }
     }
 
