@@ -18,8 +18,4 @@ public class ArraysClass {
     public int[] getMas() {
         return mas;
     }
-
-    public void setMas(int[] mas) {
-        this.mas = mas;
-    }
 }
