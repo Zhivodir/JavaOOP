@@ -6,8 +6,8 @@ import java.io.File;
  * Created by User on 31.10.2016.
  */
 public class Observer implements Runnable {
-    String observableCatalog;
-    int startQuantityOfFiles;
+    private String observableCatalog;
+    private int startQuantityOfFiles;
 
     public Observer(String observableCatalog) {
         this.observableCatalog = observableCatalog;
