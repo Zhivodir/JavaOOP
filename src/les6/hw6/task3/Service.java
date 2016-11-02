@@ -30,9 +30,6 @@ public class Service implements Runnable {
             }catch(InterruptedException e){e.printStackTrace();}
         }
         lastSort();
-//        for(int f:array){
-//            System.out.println(f);
-//        }
     }
 
     public int[] getArray() {
@@ -54,5 +51,9 @@ public class Service implements Runnable {
             }
             step = step / 2;
         }
+
+//        for (int num:array) {
+//            System.out.println(num);
+//        }
     }
 }

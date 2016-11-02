@@ -6,7 +6,7 @@ import java.util.Random;
  * Created by User on 31.10.2016.
  */
 public class ArrayStore {
-    int [] mas = new int[100000];
+    int [] mas = new int[1000];
 
     public ArrayStore() {
         Random rn = new Random();
