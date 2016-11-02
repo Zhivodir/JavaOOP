@@ -10,7 +10,7 @@ public class Manager {
         super();
         Dock dock1 = new Dock();
         Dock dock2 = new Dock();
-        Dock [] docks = new Dock[]{dock1, dock2};
+        docks = new Dock[]{dock1, dock2};
     }
 
     public void tryTakeDock(Ship ship) {
@@ -19,7 +19,7 @@ public class Manager {
             if(!docks[i].isBusy()){
                 docks[i].setBusy();
                 docks[i].unloadOneBox(ship);
-                System.out.println("Dock " + i + " unloaded box from " + ship.getName() +
+                System.out.println("Dock " + (i+1) + " unloaded box from " + ship.getName() +
                         ". Aboard: " + ship.getCountOfBoxes());
                 notifyAll();
             }else{

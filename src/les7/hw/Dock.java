@@ -14,11 +14,11 @@ public class Dock{
         return busy;
     }
 
-    public synchronized void setBusy() {
+    public void setBusy() {
         this.busy = true;
     }
 
-    public synchronized void unloadOneBox(Ship ship){
+    public void unloadOneBox(Ship ship){
         ship.reduceCountOfBoxes();
         busy = false;
         try {
