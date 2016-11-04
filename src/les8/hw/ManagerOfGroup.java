@@ -43,9 +43,8 @@ public class ManagerOfGroup {
         }catch (IOException e){e.printStackTrace();}
 
         Group group = null;
-        //System.out.println(rootPath + "//" + list[choiseGroup - 1] + ".txt");
         try (ObjectInputStream OIS = new ObjectInputStream(
-                new FileInputStream(new File(rootPath + "//" + list[choiseGroup - 1] + ".txt")))){
+                new FileInputStream(new File(rootPath + "/" + list[choiseGroup - 1] + ".txt")))){
             group = (Group)OIS.readObject();
         } catch(IOException e1){e1.printStackTrace();}
         catch(ClassNotFoundException e){
