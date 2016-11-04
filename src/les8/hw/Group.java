@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import static les8.hw.ManagerOfGroup.rootPath;
+
 /**
  * Created by User on 18.10.2016.
  */
@@ -196,7 +198,7 @@ public class Group implements Voenkom, Serializable {
 
     public void saveGroup(){
         try(ObjectOutputStream OOS = new ObjectOutputStream(
-                new FileOutputStream(ManagerOfGroup.rootPath + "//" + this.name + ".txt"))){
+                new FileOutputStream(rootPath + "/" + this.name + ".txt"))){
             OOS.writeObject(this);
         } catch(FileNotFoundException e){
             e.printStackTrace();

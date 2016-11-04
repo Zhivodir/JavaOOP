@@ -7,7 +7,7 @@ import java.io.*;
  */
 public class ManagerOfGroup {
     private String [] list = new String[20];
-    protected static String rootPath = "C://DevKit//Temp//Groups";
+    protected static String rootPath = "C:/DevKit/Temp/Groups";
 
     public ManagerOfGroup() {
         File source = new File(rootPath);
@@ -35,15 +35,15 @@ public class ManagerOfGroup {
             System.out.println(i + 1 + ". " + list[i]);
         }
         System.out.println("Choise the group: ");
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int choiseGroup = -1;
         try {
             choiseGroup = Integer.valueOf(reader.readLine());
         }catch (IOException e){e.printStackTrace();}
-        if(choiseGroup == 0){
-            this.choiseOperation();
-        }
+
         Group group = null;
+        //System.out.println(rootPath + "//" + list[choiseGroup - 1] + ".txt");
         try (ObjectInputStream OIS = new ObjectInputStream(
                 new FileInputStream(new File(rootPath + "//" + list[choiseGroup - 1] + ".txt")))){
             group = (Group)OIS.readObject();
