@@ -199,7 +199,7 @@ public class Group implements Voenkom, Serializable {
     public void saveGroup(){
         try(ObjectOutputStream OOS = new ObjectOutputStream(
                 new FileOutputStream(rootPath + "/" + this.name + ".txt"))){
-            //OOS.writeObject(this);
+            OOS.writeObject(this);
         } catch(FileNotFoundException e){
             e.printStackTrace();
             System.out.println("ERROR save group !!!");
