@@ -8,7 +8,8 @@ import java.io.IOException;
 /**
  * Created by User on 03.11.2016.
  */
-public class Reader implements Runnable {
+//public class Reader implements Runnable {
+public class Reader{
     File file;
     ManagerOfThread manager;
     byte[] buffer = new byte[1024*1024];
@@ -18,17 +19,20 @@ public class Reader implements Runnable {
         this.manager = manager;
     }
 
-    @Override
-    public void run() {
-        try(FileInputStream fis = new FileInputStream(file);) {
-        int byteread = 0;
-        for (; (byteread = fis.read(buffer)) > 0;) {
-            manager.setBuffer(buffer);
-        }
-    } catch (FileNotFoundException e) {
-        System.out.println(e);
-    }catch(IOException e){
+    //@Override
+    //public void run() {
+    public void reading() {
+        try (FileInputStream fis = new FileInputStream(file);) {
+            int byteread = 0;
+            for (; (byteread = fis.read(buffer)) > 0; ) {
+                manager.addBuffer(buffer);
+                manager.addByteReadList(byteread);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
             System.out.println(e);
         }
     }
+    //}
 }

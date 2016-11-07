@@ -15,6 +15,11 @@ public class Group implements Voenkom, Serializable {
 
     public Group(String name) {
         this.name = name;
+        group[1] = new Student("1","1",1,"2");
+        group[2] = new Student("1","1",1,"2");
+        group[3] = new Student("1","1",1,"2");
+        group[4] = new Student("1","1",1,"2");
+        group[5] = new Student("1","1",1,"2");
     }
 
     public Group(){}

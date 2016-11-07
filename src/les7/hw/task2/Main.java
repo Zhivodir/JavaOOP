@@ -7,20 +7,6 @@ public class Main {
     public static void main(String[] args) {
         ManagerOfThread mot = new ManagerOfThread("c:/DevKit/Java OOP (All cource).pdf",
                 "c:/DevKit/Temp/Target");
-
-
-//        for (int i = 0; i < fileList.length; i++) {
-//            try (FileInputStream fis = new FileInputStream(fileList[i]);
-//                 FileOutputStream fos = new FileOutputStream(target + "/" + fileList[i].getName())) {
-//                byte[] buffer = new byte[1024];
-//                int byteread = 0;
-//                for (; (byteread = fis.read(buffer)) > 0;) {
-//                    fos.write(buffer, 0, byteread);
-//                }
-//            } catch (IOException e) {
-//                System.out.println(e);
-//            }
-//        }
-
+        mot.copyFile();
     }
 }
