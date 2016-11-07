@@ -28,8 +28,11 @@ public class Writer implements Runnable {
             int currentBuf = 0;
             while(true) {
                 if (manager.isWaitFlag()) {
-                    fos.write(manager.getBuffer().get(), 0, );
+                    fos.write(manager.getBuffer().get(currentBuf),
+                            0, manager.getBytereadList().get(currentBuf));
                 }
+                if(currentBuf == numPartsOfBuffers){break;}
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

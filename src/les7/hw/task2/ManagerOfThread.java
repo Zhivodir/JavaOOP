@@ -13,18 +13,24 @@ import java.util.List;
 public class ManagerOfThread {
     private File source;
     private File target;
+    //total of parts of blocks
     private int numPartsOfBuffers;
-    private int NumPartsReadyForWrite;
+    //quantity of blocks , which are ready for write
+    private int NumPartsReadyForWrite = 0;
+    //quantity of already writed blocks
+    private int numOfAlreadyWrited = 0;
+    //blocks in this list are ready to write
     private List<byte[]> generalBuffer = new ArrayList<>();
-    private int [] bytereadLength;
-    private boolean waitFlag;
+    //quantity of bytes in buffers blocks
+    private List<Integer> byteReadList = new ArrayList<>();
+    //private boolean waitFlag;
+    private boolean endOfFile = false;
 
     public ManagerOfThread(String sourcePath, String targetPath){
         source = new File(sourcePath);
         target = new File(targetPath + "/" + sourcePath.substring(sourcePath.lastIndexOf("/")));
 
         numPartsOfBuffers = (int)source.length()/1024*1024;
-        waitFlag = true;
         Thread reader = new Thread(new Reader(source, this));
         Thread writer = new Thread(new Writer(target, this, numPartsOfBuffers));
         reader.start();
@@ -39,14 +45,6 @@ public class ManagerOfThread {
         this.generalBuffer.add(buffer);
     }
 
-    public boolean isWaitFlag() {
-        return waitFlag;
-    }
-
-    public void setWaitFlag(boolean waitFlag) {
-        this.waitFlag = waitFlag;
-    }
-
     public int getNumPartsReadyForWrite() {
         return NumPartsReadyForWrite;
     }
@@ -57,5 +55,15 @@ public class ManagerOfThread {
 
     public int getNumPartsOfBuffers() {
         return numPartsOfBuffers;
+    }
+
+    public List<Integer> getBytereadList() {
+        return byteReadList;
+    }
+
+    public void copyFile() {
+        while(!endOfFile){
+
+        }
     }
 }
