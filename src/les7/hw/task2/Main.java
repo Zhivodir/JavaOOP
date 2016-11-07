@@ -5,6 +5,8 @@ package les7.hw.task2;
  */
 public class Main {
     public static void main(String[] args) {
+        ManagerOfThread mot = new ManagerOfThread("c:/DevKit/Java OOP (All cource).pdf",
+                "c:/DevKit/Temp/Target");
 
 
 //        for (int i = 0; i < fileList.length; i++) {
