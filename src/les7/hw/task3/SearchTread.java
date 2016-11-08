@@ -30,8 +30,7 @@ public class SearchTread implements Runnable {
                 name = file.getName().substring(0, file.getName().lastIndexOf("."));
             }
             if(targetOfSearch.equals(name)){
-                System.out.println("!!!");
-                service.setResultOfSearch(file.getAbsolutePath());
+                System.out.println(file.getAbsolutePath());
             }
         }
         Thread.currentThread().interrupt();

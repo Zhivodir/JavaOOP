@@ -6,8 +6,6 @@ package les7.hw.task3;
 public class Service implements Runnable{
     private String searchArea;
     private String targetOfSearch;
-    private volatile String [] resultsOfSearch = new String[10];
-    private int quantityOfResults = 0;
     Thread thread;
 
     public Service(String searchArea, String targetOfSearch) {
@@ -16,14 +14,6 @@ public class Service implements Runnable{
         thread = new Thread(new SearchTread(this, searchArea, targetOfSearch));
     }
 
-    public void setResultOfSearch(String resultOfSearch) {
-        this.resultsOfSearch[quantityOfResults] = resultOfSearch;
-        this.quantityOfResults++;
-    }
-
-    public String[] getResultsOfSearch() {
-        return resultsOfSearch;
-    }
 
     @Override
     public void run() {
@@ -31,9 +21,5 @@ public class Service implements Runnable{
         try {
             thread.join();
         }catch(InterruptedException e){e.printStackTrace();}
-
-        for(String str:resultsOfSearch){
-            System.out.println(str);
-        }
     }
 }
