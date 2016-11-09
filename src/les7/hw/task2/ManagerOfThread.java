@@ -26,21 +26,24 @@ public class ManagerOfThread {
     //private boolean waitFlag;
     private boolean endOfFile = false;
 
-    Reader reader;
-    Writer writer;
+    Thread reader;
+    Thread writer;
 
     public ManagerOfThread(String sourcePath, String targetPath){
         source = new File(sourcePath);
         target = new File(targetPath + "/" + sourcePath.substring(sourcePath.lastIndexOf("/")));
 
         numPartsOfBuffers = (int)source.length()/(1024*1024);
-        reader = new Reader(source, this);
-        writer = new Writer(target, this, numPartsOfBuffers);
+        if(source.length()%(1024*1024) > 0){
+            numPartsOfBuffers = numPartsOfBuffers + 1;
+        }
+        reader = new Thread(new Reader(source, this));
+        writer = new Thread(new Writer(target, this, numPartsOfBuffers));
     }
 
-    public void copyFile() {
-        reader.reading();
-        writer.writing();
+    public synchronized void copyFile() {
+        reader.start();
+        writer.start();
     }
 
     public List<byte[]> getBuffer() {
@@ -51,19 +54,7 @@ public class ManagerOfThread {
         this.generalBuffer.add(buffer);
     }
 
-    public int getNumPartsReadyForWrite() {
-        return NumPartsReadyForWrite;
-    }
-
-    public void setNumPartsReadyForWrite(int numPartsReadyForWrite) {
-        NumPartsReadyForWrite = numPartsReadyForWrite;
-    }
-
-    public int getNumPartsOfBuffers() {
-        return numPartsOfBuffers;
-    }
-
-    public List<Integer> getBytereadList() {
+    public List<Integer> getByteReadList() {
         return byteReadList;
     }
 

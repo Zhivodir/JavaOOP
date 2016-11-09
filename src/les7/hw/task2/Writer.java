@@ -8,13 +8,10 @@ import java.io.IOException;
 /**
  * Created by User on 03.11.2016.
  */
-//public class Writer implements Runnable {
-public class Writer{
+public class Writer implements Runnable {
     private File target;
     private ManagerOfThread manager;
     private int numPartsOfBuffers;
-    private int NumPartsReadyForWrite;
-
 
 
     public Writer(File target, ManagerOfThread manager, int numPartsOfBuffers){
@@ -23,13 +20,20 @@ public class Writer{
         this.numPartsOfBuffers = numPartsOfBuffers;
     }
 
-//    @Override
-//    public void run() {
-    public void writing(){
+    @Override
+    public void run() {
         try (FileOutputStream fos = new FileOutputStream(target);) {
-            for(int i = 0; i < 1; i++) {
-                fos.write(manager.getBuffer().get(i),
-                        0, manager.getBytereadList().get(i));
+            for(int i = 0; i < numPartsOfBuffers ; ) {
+                if(manager.getByteReadList().get(i) != null) {
+                    fos.write(manager.getBuffer().get(i),
+                            0, manager.getByteReadList().get(i));
+                    i++;
+                }
+                else{
+                    try {
+                        this.wait();
+                    }catch (InterruptedException e){e.printStackTrace();}
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
