@@ -7,8 +7,5 @@ import les10.hw.task4.ASCIIAlphabet;
  */
 public class Main {
     public static void main(String[] args) {
-        ASCIIAlphabet asciiAlphabet = new ASCIIAlphabet();
-        asciiAlphabet.prepareListForPrint();
-        asciiAlphabet.printList();
     }
 }

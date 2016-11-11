@@ -25,6 +25,9 @@ public class ASCIIAlphabet {
         alphabet.put('P', new String[]{"*****  ","*    * ","*    * ","*****  ","*      ","*      "});
         alphabet.put('X', new String[]{"*    * "," *  *  ","  **   ","  **   "," *  *  ","*    * "});
         alphabet.put('.', new String[]{"       ","       ","       ","       ","**     ","**     "});
+        alphabet.put('\u0020', new String[]{"       ","       ","       ","       ","       ","       "});
+        alphabet.put('\u0009', new String[]{"       ","       ","       ","       ","       ","       "});
+
     }
 
     public void prepareListForPrint(){
