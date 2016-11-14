@@ -7,7 +7,8 @@ import java.io.File;
  */
 public class Main {
     public static void main(String[] args) {
-        ASCIIAlphabet asciiAlphabet = new ASCIIAlphabet(new File("c:/DevKit/Temp/Source/Alphabet.txt"));
+
+        ASCIIAlphabet asciiAlphabet = new ASCIIAlphabet(new File("Alphabet.txt"));
         asciiAlphabet.prepareListForPrint();
         asciiAlphabet.printList();
     }
