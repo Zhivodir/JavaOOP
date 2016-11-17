@@ -11,10 +11,10 @@ import java.util.regex.Pattern;
  * Created by User on 16.11.2016.
  */
 public class AllReferences {
-    String adress;
-    String htmlDocument;
-    String links;
-    String pathForSave = "c:/DevKit/Temp/Target/result.txt";
+    private String adress;
+    private String htmlDocument;
+    private String links;
+    private String pathForSave = "c:/DevKit/Temp/Target/result.txt";
 
     public AllReferences(String adress) {
         this.adress = adress;
